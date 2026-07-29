@@ -1,0 +1,201 @@
+const API_KEY = "YOUR_GEMINI_API_KEY"; // ⚠️ replace this
+
+const messagesDiv = document.getElementById("messages");
+
+function addMessage(text, sender) {
+  const msg = document.createElement("div");
+  msg.textContent = sender + ": " + text;
+  messagesDiv.appendChild(msg);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+async function sendMessage() {
+  const input = document.getElementById("input");
+  const userText = input.value;
+
+  if (!userText) return;
+
+  addMessage(userText, "You");
+
+  // 🔒 Restrict questions (training behavior)
+  if (!userText.toLowerCase().includes("javascript") &&
+      !userText.toLowerCase().includes("react")) {
+    addMessage("Only JS/React questions allowed ❌", "Bot");
+    input.value = "";
+    return;
+  }
+
+  input.value = "";
+
+  try {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+
+
+              parts: [
+                {
+                  text: `
+You are a JavaScript and React teacher.
+Answer in simple words.
+
+User: ${userText}
+`
+                }
+              ]
+            }
+          ]
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    console.log(data); // 🔍 full response
+
+    // ✅ Extract correct return value
+    const botReply =
+      data.candidates?.[0]?.content?.parts?.[0]?.text ||
+      "No response";
+
+    addMessage(botReply, "Bot");
+
+  } catch (error) {
+    console.error(error);
+    addMessage("Error occurred ❌", "Bot");
+  }
+}
+
+
+
+
+chatbothistory.push({
+    role: "user",
+    parts: [
+        {
+            text: `You are a guide who helps me in law conditions.only give me the summary and into pointer form answer . ${userdata.message}`
+        },
+        ...(userdata.file?.data 
+            ? [{ inline_data: (({ fillName, isimage, ...rest }) => rest)(userdata.file) }] 
+            : []
+        )
+    ]
+});
+
+try {
+    const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents: chatbothistory }),
+        signal: controller.signal
+    });
+
+    const data = await response.json();
+
+    // ✅ FIX: Error class
+    if (!response.ok) throw new Error(data.error?.message);
+
+    // ✅ FIX: Safe access (no crash)
+    const responseText = data?.candidates?.[0]?.content?.parts?.[0]?.text
+        ?.replace(/\*\*([^*]+)\*\*/g, "$1")
+        ?.trim() || "No response";
+
+    typingeffect(responseText, textelement, botmsgdiv);
+
+    chatbothistory.push({
+        role: "model",
+        parts: [{ text: responseText }]
+    });
+
+} catch (error) {
+    console.error(error);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+`https://api.themoviedb.org/3/movie/popular?api_key=5540e483a20e0b20354dabc2d66a31c9&language=en-US&page=${currPage}`
+          : `https://api.themoviedb.org/3/search/movie?query=${searchText}&api_key=5540e483a20e0b20354dabc2d66a31c9&page=${currPage}`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          import React , { Component } from 'react';
+          class Todo extends Component{
+              constructor(){
+                  super();// this is give tghe conrtrol to  all code or we can say that this is the keyword which is used in the for make the this  global 
+                  this.state={
+                      task:[{task:'check mails' , id:1},{task:'read article',id:2},{task:'completed' ,id:3}],
+                  currtask:''
+              }
+              }
+              handlechange=(e)=>{
+          //console.log(e.target.value)
+                  this.setState({
+                      currtask:e.target.value
+                  })
+          //console.log(currtask);
+          
+              }
+          handledelete=(id)=>{
+               let narr=this.state.task.filter((taskObj)=>{
+                  return taskObj.id!=id
+               })
+               this.setState({
+                  task:[...narr]
+               })
+          }
+          handleshumit=()=>{
+              this.setState({
+                  task:[...this.state.task,{task:this.state.currtask,id:this.state.task.length+1}]
+             } )
+          }
+          
+              render(){
+                  return(
+                      <div>
+                         <input type="text" value={this.state.currtask} onChange={this.handlechange} ></input>
+                         <button onClick={this.handleshumit}>submit</button>
+                       <ul>{  
+                          this.state.task.map((taskObj)=>(
+                            <li  key={taskObj.id}>
+                              <p>{taskObj.task}<button onClick={() =>  this.handledelete(taskObj.id)}>delete</button></p>
+                              </li>
+                          ))
+                         }</ul>
+                      </div>
+                  );
+              }
+          }
+          export const arr=[1,2,3,4,5];
+          export default Todo;

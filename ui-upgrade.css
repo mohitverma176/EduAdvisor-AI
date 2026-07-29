@@ -1,0 +1,304 @@
+/* Premium UI Upgrades */
+
+/* Glassmorphism for panels */
+.panel {
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+body.light-theme .panel {
+    background: rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid rgba(15, 23, 42, 0.12) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Micro-animations on cards */
+.student-card, .assignment-card, .kpi-card, .rec-card {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.light-theme .student-card, 
+body.light-theme .assignment-card, 
+body.light-theme .kpi-card, 
+body.light-theme .rec-card {
+    border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+.student-card:hover, .assignment-card:hover, .kpi-card:hover, .rec-card:hover {
+    transform: translateY(-4px) scale(1.01) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+body.light-theme .student-card:hover, 
+body.light-theme .assignment-card:hover, 
+body.light-theme .kpi-card:hover, 
+body.light-theme .rec-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+/* Button consistency and modern gradients */
+button, .add-btn, .next-btn, .back-btn, .finish-btn, .pdf-btn {
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.add-btn, .next-btn, .finish-btn {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+.add-btn:hover, .next-btn:hover, .finish-btn:hover, .assignment-open-btn:hover, .assignment-complete-btn:hover {
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5) !important;
+    filter: brightness(1.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+.add-btn:active, .next-btn:active, .finish-btn:active, .assignment-open-btn:active, .assignment-complete-btn:active {
+    transform: translateY(1px) !important;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4) !important;
+}
+
+.back-btn, .pdf-btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--text-color) !important;
+}
+
+.back-btn:hover, .pdf-btn:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+body.light-theme .back-btn, 
+body.light-theme .pdf-btn {
+    background: rgba(15, 23, 42, 0.05) !important;
+    border: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+body.light-theme .back-btn:hover, 
+body.light-theme .pdf-btn:hover {
+    background: rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Inputs and Forms */
+input, select, textarea {
+    background: var(--input-bg) !important;
+    border: var(--input-border) !important;
+    color: var(--text-color) !important;
+    border-radius: 8px !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    border-color: var(--input-focus) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Top Navigation Tabs */
+.tabs-nav {
+    gap: 10px !important;
+    padding: 10px !important;
+    background: var(--panel-bg) !important;
+    border-radius: 12px !important;
+    margin-bottom: 20px !important;
+    border: var(--panel-border) !important;
+    backdrop-filter: blur(16px) !important;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    border-radius: 8px !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    color: var(--text-muted) !important;
+    transition: all 0.3s ease !important;
+    padding: 10px 16px !important;
+    font-weight: 500 !important;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--text-color) !important;
+}
+
+body.light-theme .tab-btn:hover {
+    background: rgba(15, 23, 42, 0.05) !important;
+}
+
+.tab-btn.active {
+    background: rgba(59, 130, 246, 0.15) !important;
+    color: #3b82f6 !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .tabs-nav {
+        justify-content: center !important;
+    }
+}
+
+/* Marks Grid Enhancements (Fixing visibility of Hindi and CS) */
+.marks-grid, .marks-pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+}
+.marks-pill-grid {
+    gap: 4px;
+}
+.marks-grid input, .marks-pill-grid .mark-pill {
+    flex: 1 1 18%; /* allow wrapping if it gets too narrow */
+    min-width: 60px;
+}
+
+/* Database Table and Assignment Status Enhancements */
+.db-table-container, .assignment-table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.5);
+    margin-top: 15px;
+}
+
+.db-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.db-table th {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 14px 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.db-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+}
+
+.db-table tr:last-child td {
+    border-bottom: none;
+}
+
+.db-table tr:hover td {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-color);
+}
+
+body.light-theme .db-table-container {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(15, 23, 42, 0.1);
+}
+
+body.light-theme .db-table th {
+    background: rgba(15, 23, 42, 0.03);
+    border-color: rgba(15, 23, 42, 0.1);
+}
+
+body.light-theme .db-table td {
+    border-color: rgba(15, 23, 42, 0.05);
+}
+
+/* Warning System / At-Risk Styling */
+.at-risk-row td {
+    background: rgba(239, 68, 68, 0.08) !important;
+}
+.at-risk-row:hover td {
+    background: rgba(239, 68, 68, 0.15) !important;
+}
+body.light-theme .at-risk-row td {
+    background: rgba(239, 68, 68, 0.05) !important;
+}
+body.light-theme .at-risk-row:hover td {
+    background: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Dropdown styling for Teacher Status update */
+.status-dropdown {
+    appearance: none;
+    background: var(--input-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 6px !important;
+    padding: 4px 28px 4px 8px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2394a3b8%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 8px center !important;
+    background-size: 8px auto !important;
+    transition: all 0.2s ease !important;
+}
+
+.status-dropdown:hover {
+    border-color: #3b82f6 !important;
+}
+
+.status-dropdown:focus {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
+    outline: none !important;
+}
+
+body.light-theme .status-dropdown {
+    border: 1px solid rgba(15, 23, 42, 0.2) !important;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23475569%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E") !important;
+}
+
+/* Custom Webkit Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.2);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+body.light-theme ::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.05);
+}
+body.light-theme ::-webkit-scrollbar-thumb {
+    background: rgba(15, 23, 42, 0.2);
+}
+body.light-theme ::-webkit-scrollbar-thumb:hover {
+    background: rgba(15, 23, 42, 0.4);
+}

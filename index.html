@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAdvisor AI - Student Information Analyzer & Advisor</title>
+    <!-- Material Design Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- Chart.js CDN for Visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- HTML2PDF CDN for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="start.css"/>
+    <link rel="stylesheet" href="ui-upgrade.css"/>
+</head>
+<body>
+    <!-- Animated Splash Landing Page -->
+    <div id="landing-page" class="landing-page">
+        <div class="landing-content">
+            <div class="landing-logo">🎓</div>
+            <h1 class="landing-title">EduAdvisor AI</h1>
+            <p class="landing-tagline">Academic Insights & Generative Counseling at Your Fingertips</p>
+            
+            <div class="landing-features">
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <h3>Performance Analyzer</h3>
+                    <p>Interactive Pie & Bar charts detailing marks distribution and subject comparisons.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🧠</span>
+                    <h3>AI Counseling</h3>
+                    <p>Empathetic study advice, detailed weakness analysis, and career guidance powered by Gemini.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📁</span>
+                    <h3>Smart Parsing</h3>
+                    <p>Instant student transcript updates from simple drag-and-drop CSV uploads.</p>
+                </div>
+            </div>
+            
+            <button id="start-btn" class="start-btn">
+                Get Started
+                <span class="material-symbols-rounded">arrow_forward</span>
+            </button>
+        </div>
+        <div class="glow-blob blob-1"></div>
+        <div class="glow-blob blob-2"></div>
+    </div>
+        <div id="login-page" class="login-page">
+
+    <div class="login-card">
+
+        <h2 data-translate="heading">🎓 Welcome to EduAdvisor AI</h2>
+        <p data-translate="subheading">Login to access your dashboard</p>
+
+        <div class="role-toggle-container">
+            <button id="role-student-btn" class="role-btn active">👨‍🎓 Student</button>
+            <button id="role-teacher-btn" class="role-btn">👨‍🏫 Teacher</button>
+        </div>
+
+        <input 
+        id="email"
+        type="email"
+        placeholder="Enter Email">
+
+        <input 
+        id="password"
+        type="password"
+        placeholder="Enter Password">
+
+        <div id="teacher-fields" style="display: none;">
+            <input 
+            id="school"
+            type="text"
+            placeholder="Enter School Name">
+
+            <input 
+            id="class"
+            type="text"
+            placeholder="Enter Class (e.g. Grade 10)">
+        </div>
+
+        <button id="login-btn">
+            Login
+        </button>
+
+
+        <button id="signup-btn">
+            Create Account
+        </button>
+
+
+    </div>
+
+</div>
+<div id="dashboard">
+    <nav class="top-header">
+        <div class="brand" id="brand-logo" data-translate="logo">EduAdvisor AI</div>
+        <div class="header-actions">
+            <select id="lang-selector">
+                <option class="english" value="en-US">English</option>
+                <option class="hindi" value="hi-IN">Hindi</option>
+                <option class="tamil" value="ta-IN">Tamil</option>
+                <option value="mr-IN">Marathi</option>
+            </select>
+            <button id="open-ai-chat-btn" class="material-symbols-rounded" title="AI Assistant">smart_toy</button>
+            <button id="delete-chats-btn" class="material-symbols-rounded" title="Clear Chat">delete</button>
+            <button id="theme-toggle-btn" class="material-symbols-rounded" title="Toggle Theme">light_mode</button>
+            <button id="logout-btn" class="material-symbols-rounded" title="Logout">logout</button>
+        </div>
+    </nav>
+    <div class="container">
+        
+        <!-- Tab Navigation -->
+        <div class="tabs-nav" id="tabs-nav" style="display: none;">
+            <button class="tab-btn" id="tab-analytics" data-translate="tab_analytics">📊 Analytics</button>
+            <button class="tab-btn" id="tab-assignments" data-translate="tab_assignments">📝 Assignments</button>
+            <button class="tab-btn" id="tab-attendance" data-translate="tab_attendance">📅 Attendance</button>
+            <button class="tab-btn" id="tab-predictor" data-translate="tab_predictor">🎯 Predictor</button>
+            <button class="tab-btn" id="tab-timeline" data-translate="tab_timeline">📈 Timeline</button>
+            <button class="tab-btn" id="tab-database" data-translate="tab_database">🗄️ Database</button>
+            <button class="tab-btn" id="tab-leaderboard" data-translate="tab_leaderboard">🏆 Leaderboard</button>
+            <button class="tab-btn" id="tab-recommendations" data-translate="tab_recommendations">💡 Recommendations</button>
+            <button class="tab-btn" id="tab-parent" data-translate="tab_parent">👨‍👩‍👦 Parent Communication</button>
+            <button class="tab-btn" id="tab-assignment-history" data-translate="tab_history">📜 Assignment History</button>
+        </div>
+
+        <div id="dashboard-view" class="dashboard-grid">
+            <!-- PANEL 1: Student Input -->
+            <section class="panel input-panel">
+
+                <div class="panel-header">
+                    <span class="panel-icon">👤</span>
+                    <h3 class="panel-title" id="input-panel-title">
+                        Input Profile
+                    </h3>
+                </div>
+
+                <div id="student-steps" style="display: block;">
+                    <!-- STEP 1 -->
+                    <div class="step active">
+                        <h3>👨‍🎓 Student Information</h3>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input id="student-name" placeholder="Enter student name">
+                        </div>
+                        <div class="form-group">
+                            <label>Class</label>
+                            <input id="student-class" placeholder="Enter class">
+                        </div>
+                        <button class="next-btn">Next →</button>
+                    </div>
+                    <!-- STEP 2 -->
+                    <div class="step">
+                        <h3>📅 Attendance</h3>
+                        <div class="form-group">
+                            <label>Attendance %</label>
+                            <input id="student-attendance" type="number" placeholder="95">
+                        </div>
+                        <button class="back-btn">← Back</button>
+                        <button class="next-btn">Next →</button>
+                    </div>
+                    <!-- STEP 3 -->
+                    <div class="step">
+                        <h3>📚 Subject Marks</h3>
+                        <div class="marks-grid">
+                            <input class="subject-mark" id="mark-math" placeholder="Math">
+                            <input class="subject-mark" id="mark-science" placeholder="Science">
+                            <input class="subject-mark" id="mark-english" placeholder="English">
+                            <input class="subject-mark" id="mark-history" placeholder="History">
+                            <input class="subject-mark" id="mark-cs" placeholder="Computer">
+                        </div>
+                        <button class="back-btn">← Back</button>
+                        <button class="finish-btn">Generate Dashboard 🚀</button>
+                    </div>
+                </div>
+
+                <div id="student-management" style="display: none;">
+                    <div class="roster-header">
+                        <h4>Manage Your Class</h4>
+                        <div class="roster-stats">
+                            <span id="total-students">0 Students</span>
+                            <span id="class-avg-badge" class="badge-blue">Avg: N/A</span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="student-search-input" placeholder="🔍 Search students by name..." style="width: 100%; padding: 10px; border-radius: 8px; background: var(--input-bg); border: var(--input-border); color: var(--text-color);">
+                    </div>
+                    <div id="student-grid" class="student-grid">
+                        <!-- Student cards added here -->
+                    </div>
+                    <button id="add-student-btn" class="add-btn">+ Add Student Card</button>
+                    <button id="sidebar-parent-btn" class="add-btn" style="margin-top: 15px; background: #8b5cf6;">👨‍👩‍👦 Parent Comms</button>
+                </div>
+
+                <div class="file-upload-section">
+                <h3 style="margin-top:25px;">📂 Upload Student Data</h3>
+                <label class="section-label">Upload CSV Transcript</label>
+                <p class="file-helper">
+                Upload CSV file containing student name, class, attendance and marks.
+                </p>
+                <div class="file-dropzone">
+                <input type="file"id="csv-file-input"accept=".csv">
+                <label class="dropzone-label">
+                <span class="material-symbols-rounded">upload_file</span>Choose CSV File</label>
+                </div>
+                </div>
+
+
+
+                </section>
+
+                            <!-- PANEL 2: Interactive Analytics -->
+            <section class="panel analytics-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">📊</span>
+                    <h3 class="panel-title">Academic Insights</h3>
+                </div>
+                
+                <div class="kpi-container">
+                    <div class="kpi-card" id="kpi-gpa">
+                        <div class="kpi-content">
+                            <span class="kpi-label">Average Score</span>
+                            <span class="kpi-value" id="val-gpa">87.8%</span>
+                        </div>
+                        <span class="kpi-badge badge-green" id="badge-gpa">Grade: A</span>
+                    </div>
+                    <div class="kpi-card" id="kpi-attendance">
+                        <div class="kpi-content">
+                            <span class="kpi-label">Attendance</span>
+                            <span class="kpi-value" id="val-attendance">95.0%</span>
+                        </div>
+                        <span class="kpi-badge badge-green" id="badge-attendance">Excellent</span>
+                    </div>
+                    <div class="kpi-card" id="kpi-standing">
+                        <div class="kpi-content">
+                            <span class="kpi-label">Academic Risk</span>
+                            <span class="kpi-value" id="val-risk">Low</span>
+                        </div>
+                        <span class="kpi-badge badge-blue" id="badge-risk">Stable</span>
+                    </div>
+                </div>
+                
+                <div class="charts-section">
+                    <div class="chart-box">
+                        <h4 class="chart-title">Subject Marks Distribution (Pie Chart)</h4>
+                        <div class="chart-container">
+                            <canvas id="marksPieChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-box">
+                        <h4 class="chart-title">Academic Performance (Bar Chart)</h4>
+                        <div class="chart-container">
+                            <canvas id="marksBarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="pdf-section" style="margin-top: 25px;">
+                    <h3>📄 Generate Report</h3>
+                    <button id="generate-pdf-btn" class="pdf-btn">
+                        <span class="material-symbols-rounded">picture_as_pdf</span>
+                        Download PDF
+                    </button>
+                </div>
+            </section>
+        </div> <!-- End dashboard-view -->
+
+        <!-- AI CHAT VIEW (Dedicated Page) -->
+        <div id="ai-chat-view" style="display: none;">
+            <section class="panel advisor-chat-panel full-width-chat">
+                <div class="chat-header">
+                    <div class="chat-header-info">
+                        <span class="panel-icon">🤖</span>
+                        <h3 class="panel-title">EduAdvisor AI Assistant</h3>
+                        <span class="live-indicator">Live</span>
+                    </div>
+                    <div class="chat-header-actions">
+                        <button id="close-ai-chat-btn" class="material-symbols-rounded" title="Close AI">close</button>
+                    </div>
+                </div>
+                
+                <div class="chat-inner-container">
+                    <div class="app-header">
+                        <h1 class="heading">Hi, I'm EduAdvisor</h1>
+                        <p class="sub-heading" data-translate="placeholder">How can I help you today?</p>
+                    </div>
+                    <ul class="suggestions">
+                        <li class="suggestion-lines">
+                            <h4 class="text" id="text1" data-translate="text1">Generate a personalized study plan for exams</h4>
+                            <span class="material-symbols-rounded">draw</span>
+                        </li>
+                        <li class="suggestion-lines">
+                            <h4 class="text" id="text2" data-translate="text2">Analyze academic strengths and weaknesses</h4>
+                            <span class="material-symbols-rounded">lightbulb</span>
+                        </li>
+                        <li class="suggestion-lines">
+                            <h4 class="text" data-translate="text3">Suggest career paths based on these grades</h4>
+                            <span class="material-symbols-rounded">explore</span>
+                        </li>
+                        <li class="suggestion-lines">
+                            <h4 class="text" data-translate="text4">Give advice to improve attendance & performance</h4>
+                            <span class="material-symbols-rounded">monitoring</span>
+                        </li>
+                    </ul>
+                    <div class="chats-container"></div>
+                </div>
+                
+                <div class="prompt-container">
+                    <div class="prompt-wrapper">
+                        <form action="#" class="prompt-form">
+                            <input type="text" placeholder="Ask your advisor anything..." class="prompt-input" required />
+                            <div class="prompt-action">
+                                <div class="file-upload-wrapper">
+                                    <img src="#" alt="file" class="file-preview" />
+                                    <input type="file" id="file-input" hidden />
+                                    <button type="button" class="file-icon material-symbols-rounded" id="add-file-btn">attach_file</button>
+                                </div>
+                                <button type="button" id="stop-prompt-btn" class="material-symbols-rounded stop-icon">stop_circle</button>
+                                <button type="submit" id="send-prompt-btn" class="material-symbols-rounded">arrow_upward</button>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="disclaimer-text" data-translate="disclaimer">AI responses are for guidance. Always consult official academic catalogs.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- RECOMMENDATIONS VIEW -->
+        <div id="recommendations-view" style="display: none;">
+            <div class="panel recommendations-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">💡</span>
+                    <h3 class="panel-title" data-translate="tab_recommendations">Recommendations</h3>
+                </div>
+                <div class="rec-grid">
+                    <div class="rec-card" id="nav-ai-chat-card" style="border-color: #ec4899; background: rgba(236, 72, 153, 0.05);">
+                        <h3 style="color: #ec4899;">🤖 AI Assistant</h3>
+                        <p>Chat directly with your AI Assistant for personalized guidance and support.</p>
+                    </div>
+                    <div class="rec-card" data-topic="Time Management Tips">
+                        <h3>Time Management</h3>
+                        <p>Learn how to balance your studies and extracurriculars efficiently.</p>
+                    </div>
+                    <div class="rec-card" data-topic="Exam Preparation Strategy">
+                        <h3>Exam Prep</h3>
+                        <p>Discover scientifically proven ways to retain information faster.</p>
+                    </div>
+                    <div class="rec-card" data-topic="Motivational Advice for low scores">
+                        <h3>Stay Motivated</h3>
+                        <p>Having a tough semester? Get a motivational boost and action plan.</p>
+                    </div>
+                    <div class="rec-card" data-topic="College Application Advice">
+                        <h3>College Apps</h3>
+                        <p>Start planning for your future with personalized advice.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARENT VIEW (TEACHER ONLY) -->
+        <div id="parent-view" style="display: none;">
+            <div class="panel parent-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">👨‍👩‍👦</span>
+                    <h3 class="panel-title" data-translate="tab_parent">Parent Communications</h3>
+                </div>
+                <div class="parent-form-container">
+                    <p>Send student credentials directly to their parents using your default email client.</p>
+                    <div class="form-group">
+                        <label>Select Student</label>
+                        <select id="parent-student-select"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Parent Email Address</label>
+                        <input type="email" id="parent-email" placeholder="parent@example.com">
+                    </div>
+                    <button id="send-parent-email-btn" class="add-btn">
+                        <span class="material-symbols-rounded">mail</span> Compose Email
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ASSIGNMENT HISTORY VIEW (TEACHER ONLY) -->
+        <div id="assignment-history-view" style="display: none;">
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-icon">📜</span>
+                    <h3 class="panel-title">Assignment History & Analytics</h3>
+                </div>
+                <div id="assignment-history-content" style="padding: 20px;">
+                    <!-- Populated by assignmentHistory.js -->
+                </div>
+            </div>
+        </div>
+        <!-- DATABASE VIEW (TEACHER ONLY) -->
+        <div id="database-view" style="display: none;">
+            <div class="panel database-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">🗄️</span>
+                    <h3 class="panel-title">Student Database</h3>
+                </div>
+                <div class="db-stats" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Total Registered Students: <span id="db-total-count">0</span></span>
+                    <button id="export-csv-btn" class="add-btn" style="width: auto; padding: 8px 15px;">
+                        <span class="material-symbols-rounded">download</span> Export CSV
+                    </button>
+                </div>
+                <div class="db-table-container">
+                    <table class="db-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email/Login</th>
+                                <th>Password</th>
+                                <th>Attendance %</th>
+                                <th>GPA</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="db-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- LEADERBOARD VIEW -->
+        <div id="leaderboard-view" style="display: none;">
+            <div class="panel database-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">🏆</span>
+                    <h3 class="panel-title">Class Leaderboard</h3>
+                </div>
+                <div id="leaderboard-content" style="padding: 20px;">
+                    <!-- Populated by studentManager.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ASSIGNMENTS VIEW -->
+        <div id="assignments-view" style="display: none;"></div>
+
+        <!-- ATTENDANCE VIEW -->
+        <div id="attendance-view" style="display: none;"></div>
+
+        <!-- WEIGHTAGE VIEW -->
+        <div id="weightage-view" style="display: none;"></div>
+
+        <!-- PREDICTOR VIEW -->
+        <div id="predictor-view" style="display: none;"></div>
+
+        <!-- TIMELINE VIEW -->
+        <div id="timeline-view" style="display: none;"></div>
+
+        <!-- STATIC PAGE VIEW -->
+        <div id="static-page-view" style="display: none;">
+            <div class="panel static-panel" style="padding: 30px;">
+                <div class="panel-header" style="margin: -30px -30px 20px -30px;">
+                    <span class="panel-icon">📄</span>
+                    <h3 class="panel-title" id="static-title">Page Title</h3>
+                </div>
+                <div class="static-content" id="static-content" style="line-height: 1.6; color: var(--text-color);">
+                    <!-- Content injected via JS -->
+                </div>
+                <button class="add-btn" id="close-static-btn" style="margin-top: 30px; width: auto;">← Back</button>
+            </div>
+        </div>
+
+    </div> <!-- End container -->
+    <footer id="app-footer" class="app-footer" style="display: none;">
+        <div class="footer-container">
+            <div class="footer-section brand-section">
+                <h3>EduAdvisor AI</h3>
+                <p>Academic Insights & Generative Counseling at Your Fingertips.</p>
+                <div class="video-container">
+    <video autoplay muted loop playsinline controls>
+        <source src="asset/Video_Prompt_Student_Reacting (online-video-cutter.com)(1).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+            </div>
+            <div class="footer-section links-section">
+                <h4>Company</h4>
+                <a href="#" id="about" class="footer-link" data-target="about">About Us</a>
+                <a href="#" id="team" class="footer-link" data-target="team">Team Members</a>
+                <a href="#" id="auth" class="footer-link" data-target="authorities">Authorities</a>
+                <a href="#" id="contact" class="footer-link" data-target="contact">Contact</a>
+            </div>
+            <div class="footer-section links-section">
+                <h4>Legal</h4>
+                <a href="#" class="footer-link" data-target="privacy">Privacy Policy</a>
+                <a href="#" class="footer-link" data-target="disclaimer">Disclaimer</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EduAdvisor AI. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="main.js"></script>
+</div>
+
+<!-- Hidden Dedicated PDF Template -->
+<div id="pdf-report-template" class="pdf-report-template" style="display: none;">
+    <div class="pdf-header">
+        <div class="pdf-logo">🎓 EduAdvisor AI</div>
+        <div class="pdf-title">Official Academic Report</div>
+    </div>
+    
+    <div class="pdf-student-info">
+        <div class="info-block">
+            <span class="info-label">Student Name</span>
+            <h2 id="pdf-student-name">Name</h2>
+        </div>
+        <div class="info-block">
+            <span class="info-label">Class / Grade</span>
+            <h2 id="pdf-student-class">Class</h2>
+        </div>
+        <div class="info-block">
+            <span class="info-label">Date Generated</span>
+            <h2 id="pdf-date">Date</h2>
+        </div>
+    </div>
+
+    <div class="pdf-kpis">
+        <div class="pdf-kpi-card">
+            <div class="kpi-label">Average Score</div>
+            <div class="kpi-val" id="pdf-avg-score">--</div>
+            <div class="pdf-badge" id="pdf-grade-badge">--</div>
+        </div>
+        <div class="pdf-kpi-card">
+            <div class="kpi-label">Attendance</div>
+            <div class="kpi-val" id="pdf-attendance">--</div>
+            <div class="pdf-badge" id="pdf-att-badge">--</div>
+        </div>
+        <div class="pdf-kpi-card">
+            <div class="kpi-label">Academic Risk</div>
+            <div class="kpi-val" id="pdf-risk">--</div>
+            <div class="pdf-badge" id="pdf-risk-badge">--</div>
+        </div>
+    </div>
+
+    <div class="pdf-marks-table-container">
+        <table class="pdf-marks-table">
+            <thead>
+                <tr>
+                    <th>Mathematics</th>
+                    <th>Science</th>
+                    <th>English</th>
+                    <th>History</th>
+                    <th>Computer Sci</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="pdf-mark-math">--</td>
+                    <td id="pdf-mark-sci">--</td>
+                    <td id="pdf-mark-eng">--</td>
+                    <td id="pdf-mark-hist">--</td>
+                    <td id="pdf-mark-cs">--</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pdf-charts-container">
+        <div class="pdf-chart-wrapper">
+            <h3>Subject Distribution</h3>
+            <img id="pdf-pie-img" src="" alt="Pie Chart">
+        </div>
+        <div class="pdf-chart-wrapper">
+            <h3>Performance Breakdown</h3>
+            <img id="pdf-bar-img" src="" alt="Bar Chart">
+        </div>
+    </div>
+    
+    <div class="pdf-footer">
+        <p>Generated by EduAdvisor AI • Secure & Verified</p>
+    </div>
+</div>
+
+</body>
+</html>

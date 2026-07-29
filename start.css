@@ -1,0 +1,390 @@
+/* ==========================================
+   STATIC PAGES
+========================================== */
+
+.about-page{
+    max-width:1200px;
+    margin:40px auto;
+    padding:25px;
+    font-family:"Inter",sans-serif;
+    color:#ffffff;
+}
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+.about-page h1{
+    text-align:center;
+    font-size:42px;
+    font-weight:800;
+    color:#ffb347;
+    margin-bottom:18px;
+    letter-spacing:1px;
+}
+
+.about-intro{
+    max-width:900px;
+    margin:0 auto 45px;
+    text-align:center;
+    font-size:17px;
+    line-height:1.9;
+    color:#e7e7e7;
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:25px;
+}
+
+/* ==========================================
+   CARDS
+========================================== */
+
+.about-card{
+
+    position:relative;
+
+    padding:28px;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,190,90,.12),
+        rgba(255,140,0,.05)
+    );
+
+    border:1px solid rgba(255,190,90,.35);
+
+    backdrop-filter:blur(14px);
+
+    transition:.35s ease;
+
+    box-shadow:
+    0 10px 30px rgba(255,150,0,.12);
+
+}
+
+.about-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.08),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+}
+
+.about-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#ffc66d;
+
+    box-shadow:
+    0 18px 40px rgba(255,165,0,.25);
+
+}
+
+.about-card h2{
+
+    color:#ffbe5c;
+
+    margin-bottom:18px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.about-card p{
+
+    color:#eeeeee;
+
+    line-height:1.9;
+
+    font-size:15px;
+
+}
+
+.about-card ul{
+
+    padding-left:22px;
+
+    margin-top:15px;
+
+}
+
+.about-card li{
+
+    margin-bottom:10px;
+
+    color:#f2f2f2;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.about-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:18px;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.about-table th{
+
+    background:linear-gradient(
+        135deg,
+        #ff9d2f,
+        #ffc857
+    );
+
+    color:#fff;
+
+    padding:16px;
+
+    text-align:left;
+
+    font-size:15px;
+
+}
+
+.about-table td{
+
+    padding:16px;
+
+    color:#f5f5f5;
+
+    background:rgba(255,255,255,.05);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.about-table tr:nth-child(even){
+
+    background:rgba(255,255,255,.03);
+
+}
+
+.about-table tr:hover{
+
+    background:rgba(255,193,7,.12);
+
+}
+
+/* ==========================================
+   LINKS
+========================================== */
+
+.about-page a{
+
+    color:#ffb347;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.about-page a:hover{
+
+    color:#ffd56a;
+
+    text-decoration:underline;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.about-btn,
+#close-static-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:35px;
+
+    padding:14px 30px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffb347,
+        #ff8c42
+    );
+
+    transition:.3s;
+
+    box-shadow:
+    0 12px 25px rgba(255,150,0,.25);
+
+}
+
+.about-btn:hover,
+#close-static-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffa62b,
+        #ff7b00
+    );
+
+    box-shadow:
+    0 18px 35px rgba(255,130,0,.35);
+
+}
+
+.about-btn:active,
+#close-static-btn:active{
+
+    transform:scale(.97);
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+.about-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.about-page{
+
+padding:18px;
+
+}
+
+.about-page h1{
+
+font-size:34px;
+
+}
+
+.about-table{
+
+display:block;
+
+overflow-x:auto;
+
+white-space:nowrap;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.about-page h1{
+
+font-size:28px;
+
+}
+
+.about-intro{
+
+font-size:15px;
+
+}
+
+.about-card{
+
+padding:22px;
+
+}
+
+.about-card h2{
+
+font-size:21px;
+
+}
+
+.about-table th,
+.about-table td{
+
+padding:12px;
+
+font-size:13px;
+
+}
+
+.about-btn,
+#close-static-btn{
+
+width:100%;
+
+}
+
+}
+.video-container{
+    width: 405px;
+    display:flex;
+    height: 200;
+    justify-content:center;
+    margin:30px 0;
+}
+
+.video-container video{
+    width:100%;
+    max-width:900px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
