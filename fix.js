@@ -1,17 +1,15 @@
 const fs = require('fs');
 let css = fs.readFileSync('style.css', 'utf8');
 
-// The corrupted text starts at: /*   - - -   Teacher Dashboard Styles
-// Let's find the original Teacher Dashboard Styles text or the corrupt one.
 let idx = css.indexOf('/ *   - - -   T e a c h e r');
 if (idx === -1) {
     idx = css.indexOf('/* --- Teacher Dashboard');
 }
 if (idx === -1) {
-    // If not found, just try to find where we should cut.
+
     idx = css.indexOf('.pdf-exporting .chart-title {');
     if (idx !== -1) {
-        idx = css.indexOf('}', idx) + 1; // cut right after this block closes
+        idx = css.indexOf('}', idx) + 1; 
     }
 }
 
